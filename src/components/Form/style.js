@@ -40,15 +40,22 @@ const styles = StyleSheet.create({
   },
 
   buttom: {
-    backgroundColor: '#ff0043',
+    backgroundColor: "#ff0043",
     borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",
-    width: '90%',
+    width: "90%",
     paddingVertical: 12,
     marginLeft: 12,
-    marginTop: 30,
-  }
+    marginVertical: 40,
+  },
+
+  errorMessage: {
+    fontSize: 12,
+    color: "red",
+    fontWeight: "bold",
+    paddingLeft: 20,
+  },
 });
 
 export default styles;
