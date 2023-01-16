@@ -31,6 +31,8 @@ export default function ResultImc({ messageResultImc, resultImc }) {
 
     return (
         <View style={{width: '100%', alignItems: 'center'}}>
+            <Text style={styles.message}>{messageResultImc}</Text>
+            <Text style={styles.result}>{resultImc}</Text>
             <View style={styles.shareButtomContainer}>
                 <TouchableOpacity
                     onPress={onShare}
@@ -39,8 +41,6 @@ export default function ResultImc({ messageResultImc, resultImc }) {
                     <Text style={styles.buttomText}>Share</Text>
                 </TouchableOpacity>
             </View>
-            <Text style={styles.message}>{messageResultImc}</Text>
-            <Text style={styles.result}>{resultImc}</Text>
         </View>
     )
 }
