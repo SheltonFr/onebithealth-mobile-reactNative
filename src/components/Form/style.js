@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
   formContext: {
     width: "100%",
     height: "100%",
+    paddingTop: 10,
     bottom: 0,
     backgroundColor: "#fff",
     alignItems: "center",

@@ -19,7 +19,7 @@ export default function Form() {
     const [weight, setWeight] = useState(null)
     const [textButton, setTextButton] = useState('Calcular')
     const [imc, setImc] = useState(null);
-    const [messageImc, setMessageImc] = useState(null);
+    const [messageImc, setMessageImc] = useState("Preencha o peso e a altura");
     const [errorMessage, setErrorMessage] = useState(null);
 
     function inputValidations() {
@@ -40,6 +40,7 @@ export default function Form() {
 
     function handleButtonClick() {
         if (weight != null && height != null) {
+
             imcCalculator();
             setHeight(null);
             setWeight(null);
@@ -50,51 +51,70 @@ export default function Form() {
 
 
         } else {
+
             inputValidations();
             setImc(null);
-            setMessageImc(null)
+            setMessageImc("Preencha o peso e a altura");
             setTextButton('Calcular');
 
         }
     }
 
     return (
-        <Pressable onPress={Keyboard.dismiss} style={styles.formContext}>
-            <View style={styles.form}>
-                <Text style={styles.formLabel} >Altura</Text>
-                {(!height && errorMessage) && <Text style={styles.errorMessage}>{errorMessage}</Text>}
-                <TextInput
-                    placeholder='Ex. 1.75'
-                    keyboardType='numeric'
-                    value={height}
-                    onChangeText={setHeight}
-                    style={styles.formInput}
-                />
+        <View style={styles.formContext}>
+            {!imc ?
+                <Pressable onPress={Keyboard.dismiss} style={styles.form}>
+                    <Text style={styles.formLabel} >Altura</Text>
+                    {(!height && errorMessage) && <Text style={styles.errorMessage}>{errorMessage}</Text>}
+                    <TextInput
+                        placeholder='Ex. 1.75'
+                        keyboardType='numeric'
+                        value={height}
+                        onChangeText={setHeight}
+                        style={styles.formInput}
+                    />
 
-                <Text style={styles.formLabel}>Peso</Text>
-                {(!weight && errorMessage) && <Text style={styles.errorMessage}>{errorMessage}</Text>}
-                <TextInput
-                    placeholder='Ex. 75.58'
-                    keyboardType='numeric'
-                    value={weight}
-                    onChangeText={setWeight}
-                    style={styles.formInput}
-                />
+                    <Text style={styles.formLabel}>Peso</Text>
+                    {(!weight && errorMessage) && <Text style={styles.errorMessage}>{errorMessage}</Text>}
+                    <TextInput
+                        placeholder='Ex. 75.58'
+                        keyboardType='numeric'
+                        value={weight}
+                        onChangeText={setWeight}
+                        style={styles.formInput}
+                    />
 
-                <TouchableOpacity
-                    onPress={handleButtonClick}
-                    style={styles.buttom}
-                >
-                    <Text
-                        style={styles.textButtom}
+                    <TouchableOpacity
+                        onPress={handleButtonClick}
+                        style={styles.buttom}
                     >
-                        {textButton}
-                    </Text>
-                </TouchableOpacity>
+                        <Text
+                            style={styles.textButtom}
+                        >
+                            {textButton}
+                        </Text>
+                    </TouchableOpacity>
 
-            </View>
+                </Pressable>
 
-            <ResultImc resultImc={imc} messageResultImc={messageImc} />
-        </Pressable>
+                :
+                <View style={styles.form}>
+                    <ResultImc resultImc={imc} messageResultImc={messageImc} />
+                    <TouchableOpacity
+                        onPress={handleButtonClick}
+                        style={styles.buttom}
+                    >
+                        <Text
+                            style={styles.textButtom}
+                        >
+                            {textButton}
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            }
+
+
+
+        </View>
     )
 }
