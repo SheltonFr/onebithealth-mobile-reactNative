@@ -38,6 +38,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#ffffff",
   },
+
+  buttom: {
+    backgroundColor: '#ff0043',
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    width: '90%',
+    paddingVertical: 12,
+    marginLeft: 12,
+    marginTop: 30,
+  }
 });
 
 export default styles;

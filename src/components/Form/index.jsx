@@ -53,12 +53,16 @@ export default function Form() {
                 />
 
                 <TouchableOpacity
-                    onPress={handleButtonClick} 
-                    style={styles.buttom}>
-                        <Text style={styles.textButtom}>
-                            {textButton}waeasd
-                        </Text>
-                    </TouchableOpacity>
+                    onPress={handleButtonClick}
+                    style={styles.buttom}
+                >
+                    <Text
+                        style={styles.textButtom}
+                    >
+                        {textButton}
+                    </Text>
+                </TouchableOpacity>
+
             </View>
 
             <ResultImc resultImc={imc} messageResultImc={messageImc} />
