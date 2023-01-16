@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Keyboard, View } from 'react-native';
 import Title from './src/components/Title/index';
 import Form from './src/components/Form/index';
 

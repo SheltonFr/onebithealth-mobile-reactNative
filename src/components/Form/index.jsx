@@ -5,7 +5,8 @@ import {
     Text,
     TouchableOpacity,
     Keyboard,
-    Vibration
+    Vibration,
+    Pressable
 } from 'react-native'
 
 import ResultImc from './ResultImc/index'
@@ -30,7 +31,9 @@ export default function Form() {
 
 
     function imcCalculator() {
-        return setImc((weight / (height * height)).toFixed(2));
+        let formattedHeight = height.replace(',', '.')
+        let formattedWeight = weight.replace(',', '.')
+        return setImc((formattedWeight / (formattedHeight * formattedHeight)).toFixed(2));
     }
 
 
@@ -45,6 +48,7 @@ export default function Form() {
             setErrorMessage(null);
             Keyboard.dismiss();
 
+
         } else {
             inputValidations();
             setImc(null);
@@ -55,7 +59,7 @@ export default function Form() {
     }
 
     return (
-        <View style={styles.formContext}>
+        <Pressable onPress={Keyboard.dismiss} style={styles.formContext}>
             <View style={styles.form}>
                 <Text style={styles.formLabel} >Altura</Text>
                 {(!height && errorMessage) && <Text style={styles.errorMessage}>{errorMessage}</Text>}
@@ -91,6 +95,6 @@ export default function Form() {
             </View>
 
             <ResultImc resultImc={imc} messageResultImc={messageImc} />
-        </View>
+        </Pressable>
     )
 }
