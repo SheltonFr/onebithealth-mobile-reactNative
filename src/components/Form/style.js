@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
     width: "90%",
     paddingVertical: 12,
     marginLeft: 12,
-    marginVertical: 40,
+    marginTop: 40, 
+    marginBottom: 20, 
   },
 
   errorMessage: {
@@ -57,6 +58,27 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingLeft: 20,
   },
+
+  showListButton: {
+    backgroundColor: '#cccccc80',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 30,
+    width: 100,
+    marginHorizontal: 3
+  },
+
+  buttonsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  textB: {
+    textAlign: 'center',
+    width: '100%',
+    fontWeight: 'bold',
+  }
 });
 
 export default styles;

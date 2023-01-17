@@ -12,6 +12,7 @@ import {
 } from 'react-native'
 
 import List from '../List/List'
+import style from '../List/ListItem/style'
 import ResultImc from './ResultImc/index'
 import styles from './style'
 
@@ -29,6 +30,8 @@ export default function Form() {
     const [messageImc, setMessageImc] = useState("Preencha o peso e a altura");
     const [errorMessage, setErrorMessage] = useState(null);
     const [imcList, setImcList] = useState([]);
+    const [showList, setShowList] = useState(false);
+    const [showListText, setShowListText] = useState('Show list');
 
     function inputValidations() {
         if (imc == null) {
@@ -37,9 +40,13 @@ export default function Form() {
         }
     }
 
-    // useEffect(() => {
-    //     console.log(imcList);
-    // }, [imcList])
+    useEffect(() => {
+        if (showList) {
+            setShowListText('Hide List')
+        } else {
+            setShowListText('Show List')
+        }
+    }, [showList])
 
     function imcCalculator() {
         let formattedHeight = height.replace(',', '.')
@@ -131,7 +138,41 @@ export default function Form() {
             }
             {/* Imc List  */}
 
-            <List data={imcList}/>
+            {imcList.length > 0 &&
+                <View style={styles.buttonsContainer}>
+                    <TouchableOpacity
+                        style={styles.showListButton}
+                        onPress={() => {
+                            setShowList(!showList);
+                        }}
+                    >
+                        <Text style={styles.textB}>{showListText}</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={styles.showListButton}
+                        onPress={() => {
+                            Alert.alert('Clear List', 'Comfirm list cleanup!', [
+                                {
+                                    text: 'Cancel',
+                                    style: 'cancel'
+                                },
+
+                                {
+                                    text: 'Confirm',
+                                    onPress: () => setImcList([])
+                                }
+                            ], { cancelable: true })
+                        }}
+                    >
+                        <Text style={styles.textB}>Clear</Text>
+                    </TouchableOpacity>
+                </View>
+            }
+
+            {showList && <List data={imcList} />}
+
+
         </View>
     )
 }
