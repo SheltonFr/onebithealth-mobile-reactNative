@@ -7,6 +7,7 @@ import styles from './style'
 export default function List({ data }) {
     return (
         <FlatList
+            showsHorizontalScrollIndicator={false}
             style={styles.container}
             data={data}
             renderItem={({ item }) => <ListItem result={item.imc} />}
