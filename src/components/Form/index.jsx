@@ -6,13 +6,20 @@ import {
     TouchableOpacity,
     Keyboard,
     Vibration,
-    Pressable
+    Pressable,
+    FlatList,
+    Alert
 } from 'react-native'
 
+import List from '../List/List'
 import ResultImc from './ResultImc/index'
 import styles from './style'
 
+
+
+
 export default function Form() {
+
 
 
     const [height, setHeight] = useState(null)
@@ -21,6 +28,7 @@ export default function Form() {
     const [imc, setImc] = useState(null);
     const [messageImc, setMessageImc] = useState("Preencha o peso e a altura");
     const [errorMessage, setErrorMessage] = useState(null);
+    const [imcList, setImcList] = useState([]);
 
     function inputValidations() {
         if (imc == null) {
@@ -29,11 +37,19 @@ export default function Form() {
         }
     }
 
+    // useEffect(() => {
+    //     console.log(imcList);
+    // }, [imcList])
 
     function imcCalculator() {
         let formattedHeight = height.replace(',', '.')
         let formattedWeight = weight.replace(',', '.')
-        return setImc((formattedWeight / (formattedHeight * formattedHeight)).toFixed(2));
+        let totalImc = (formattedWeight / (formattedHeight * formattedHeight)).toFixed(2);
+        setImcList([...imcList, {
+            id: new Date().getTime(),
+            imc: totalImc
+        }]);
+        return setImc(totalImc);
     }
 
 
@@ -98,6 +114,7 @@ export default function Form() {
                 </Pressable>
 
                 :
+
                 <View style={styles.form}>
                     <ResultImc resultImc={imc} messageResultImc={messageImc} />
                     <TouchableOpacity
@@ -112,9 +129,9 @@ export default function Form() {
                     </TouchableOpacity>
                 </View>
             }
+            {/* Imc List  */}
 
-
-
+            <List data={imcList}/>
         </View>
     )
 }
